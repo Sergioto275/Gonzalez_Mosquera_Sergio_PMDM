@@ -9,15 +9,16 @@ import { IPregunta } from './../interfaces/interfaces';
   standalone: false,
 })
 export class HomePage {
-
+  preguntas!:IPregunta[];
   //Zerbitzua inportatu
-  constructor() {}
+  constructor(private preguntaService: CuestionarioService) {
+    this.preguntas = preguntaService.getPreguntas();
+  }
 
   //Metodo bat sortu "Erantzun" onclick egiteko
   //IGaldera bat jasoko du eta zerbitzua deituko du beharrezkoak diren eragiketak egiteko
-
-  //Sortu metodo bat "Gorde"ren onclick-a kudeatzeko
-  //Ez du parametrorik jasotzen eta zerbitzuari deituko dio dagokion eragiketak egiteko.
-
-
+  galdetu(pregunta:any)
+  {
+    this.preguntaService.preguntar(pregunta);
+  }
 }

@@ -1,15 +1,13 @@
-<ion-header [translucent]="true">
-  <ion-toolbar>
-    <ion-title>
-      Galdetegia Hau konponente baten bitartez egin
-    </ion-title>
-  </ion-toolbar>
-</ion-header>
+<app-goiburukoa></app-goiburukoa>
 
 <ion-content [fullscreen]="true">
   <!-- Irakurri galdetegiko galdera guztiak-->
   <ion-list>
-    <ion-item>
+    <ion-item *ngFor="let item of preguntas">
+      <ion-img [src]="item.logotipo"></ion-img>
+      <ion-badge slot="end" color="success" *ngIf="item.acierto">{{ item.respuesta }}</ion-badge>
+      <ion-badge slot="end" color="danger" *ngIf="item.intentos!=0">{{ item.intentos }}</ion-badge>
+      <ion-badge slot="end" color="warning" *ngFor="let it of item.respuestasIncorrectas">{{ it }}</ion-badge>
       <!-- logotipoa gehitu -->
       <!-- ion-badge gehitu galdera asmatzekotan, saiakera zenbatzailea eta erakutsi okerrak izan diren saiakera kopurua
       -- 1-Asmatzen bada: "success" kolorea jarri eta erakutsi pantailako eskuineko partean (slot)
@@ -18,9 +16,10 @@
       -->
 
       <!-- Gehitu botoiaren funtzionalitatea-->
-
+      <ion-button slot="end" (click)="galdetu(item)">RESPONDER</ion-button>
     </ion-item>
   </ion-list>
   <!--Galdetagiaren botoia gehitu-->
+  <ion-button>GUARDAR CUESTONARIO</ion-button>
 
 </ion-content>
