@@ -1,0 +1,1 @@
+Erantzun galdera hemen:
